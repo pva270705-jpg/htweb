@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Văn An store</title>
+</head>
+<style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .sale-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-brand {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .product-specs {
+            margin-bottom: 20px;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .spec-label {
+            font-weight: 500;
+        }
+
+        .price-section {
+            margin-bottom: 25px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.95rem;
+            margin-right: 10px;
+        }
+
+        .current-price {
+            font-size: 1.8rem;
+            color: #ff4757;
+            font-weight: bold;
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            color: #666;
+        }
+
+       
+        .buy-button {
+            width: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(45deg, #5a67d8, #6b46c1);
+        }
+
+        .buy-button:hover::before {
+            left: 100%;
+        }
+
+        .buy-button:active {
+            transform: translateY(-1px);
+        }
+
+        
+        .rating {
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+
+        .rating-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .contact-item:hover {
+            color: #4a90e2;
+            cursor: pointer;
+        }
+
+
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .product-info {
+                padding: 20px;
+            }
+        }
+
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+
+        
+
+
+</style>
+<body>
+    <div class="container">
+        
+        <header class="header">
+            <h1>📱 Văn An Store</h1>
+            <p>Cửa hàng điện thoại uy tín - Giá tốt nhất thị trường</p>
+        </header>
+
+        
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="\image\Apple-iPhone-15-Pro-lineup-color-lineup-geo-230912_big.jpg.large_2x.jpg" height="200px" alt="iPhone 16 Pro">
+                    <div class="sale-badge">-15%</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">Apple</div>
+                    <h3 class="product-name">iPhone 15 Pro Max</h3>
+                    
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Màn hình:</span>
+                            <span>6.7" Super Retina XDR</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Chip:</span>
+                            <span>A17 Pro</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Bộ nhớ:</span>
+                            <span>256GB</span>
+                        </div>
+                    </div>
+
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-text">(4.8/5 - 1,234 đánh giá)</span>
+                    </div>
+
+                    <div class="price-section">
+                        <span class="original-price">32.990.000₫</span>
+                        <span class="current-price">27.990.000</span>
+                        <span class="price-unit">₫</span>
+                    </div>
+
+                    <button class="buy-button" onclick="buyProduct('iPhone 15 Pro Max')">
+                        🛒 Mua ngay
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="\image\OIP.jpg" alt="Samsung Galaxy S23">
+                    <div class="sale-badge">-20%</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">Samsung</div>
+                    <h3 class="product-name">Galaxy S23 Ultra</h3>
+                    
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Màn hình:</span>
+                            <span>6.8" Dynamic AMOLED</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Chip:</span>
+                            <span>Snapdragon 8 Gen 3</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">RAM:</span>
+                            <span>12GB</span>
+                        </div>
+                    </div>
+
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-text">(4.6/5 - 892 đánh giá)</span>
+                    </div>
+
+                    <div class="price-section">
+                        <span class="original-price">31.990.000₫</span>
+                        <span class="current-price">25.590.000</span>
+                        <span class="price-unit">₫</span>
+                    </div>
+
+                    <button class="buy-button" onclick="buyProduct('Samsung Galaxy S24 Ultra')">
+                        🛒 Mua ngay
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="\image\GLnrwEhv.jpg" height="50px" width="50px" alt="Xiaomi 14">
+                    <div class="sale-badge">-25%</div>
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">Xiaomi</div>
+                    <h3 class="product-name">Xiaomi 14 Pro</h3>
+                    
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Màn hình:</span>
+                            <span>6.73" AMOLED</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Chip:</span>
+                            <span>Snapdragon 8 Gen 3</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Camera:</span>
+                            <span>50MP Leica</span>
+                        </div>
+                    </div>
+
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-text">(4.4/5 - 567 đánh giá)</span>
+                    </div>
+
+                    <div class="price-section">
+                        <span class="original-price">19.990.000₫</span>
+                        <span class="current-price">14.990.000</span>
+                        <span class="price-unit">₫</span>
+                    </div>
+
+                    <button class="buy-button" onclick="buyProduct('Xiaomi 14 Pro')">
+                        🛒 Mua ngay
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="\image\8227908_3.Mau-Find-X7.jpg" alt="OPPO Find X7">
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">OPPO</div>
+                    <h3 class="product-name">OPPO Find X7 Ultra</h3>
+                    
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Màn hình:</span>
+                            <span>6.82" AMOLED</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Chip:</span>
+                            <span>Snapdragon 8 Gen 3</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Camera:</span>
+                            <span>50MP Hasselblad</span>
+                        </div>
+                    </div>
+
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-text">(4.3/5 - 345 đánh giá)</span>
+                    </div>
+
+                    <div class="price-section">
+                        <span class="current-price">22.990.000</span>
+                        <span class="price-unit">₫</span>
+                    </div>
+
+                    <button class="buy-button" onclick="buyProduct('OPPO Find X7 Ultra')">
+                        🛒 Mua ngay
+                    </button>
+                </div>
+            </div>
+
+
+            
+            </div>
+        </div>
+               <section class="contact-section">
+            <h2 class="section-title">Liên Hệ</h2>
+            <p>Liên hệ trực tiếp qua email hoặc zao để được tư vấn nha</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>pva270705@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>0812448732( Văn An )</span>
+                </div>
+                
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function buyProduct(productName) {
+            alert(`Bạn đã chọn mua: ${productName}\n\nCảm ơn bạn đã mua sắm tại PhoneStore! 🎉\n\nChúng tôi sẽ liên hệ với bạn sớm nhất.`);
+            
+           
+            event.target.style.background = 'linear-gradient(45deg, #2ecc71, #27ae60)';
+            event.target.innerHTML = '✅ Đã thêm vào giỏ';
+            
+            setTimeout(() => {
+                event.target.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                event.target.innerHTML = '🛒 Mua ngay';
+            }, 2000);
+        }
+
+ 
+        
+     
+    </script>
+</body>
+</html>
