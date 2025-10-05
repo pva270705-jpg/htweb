@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        #container {
+            display: grid;
+            grid-template-areas: "header header" "left right" "footer footer";
+            padding: 5vh 5vw;
+        }
+        
+        #header {
+            grid-area: header;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: red;
+            background-color: aquamarine;
+        }
+        
+        ul {
+            display: flex;
+            list-style-type: none;
+        }
+        
+        li {
+            margin: 10px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+        }
+        
+        #left {
+            grid-area: left;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        form label {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        
+        .buttons {
+            margin-top: 10px;
+        }
+        
+        #right {
+            grid-area: right;
+            padding-left: 50%;
+        }
+        
+        #footer {
+            grid-area: footer;
+            text-align: center;
+            background-color: oldlace;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div id="header">
+            <div>
+                <ul>
+                    <li>Home</li>
+                    <li> Loai Sr </li>
+                    <li>Thuoc Sr</li>
+                    <li>Ki thuat </li>
+                    <li>Tro giup</li>
+                </ul>
+
+            </div>
+            <div class="logo">
+                <p>Vua Trai cay Zan An</p>
+                <img src="\img\Vẽ tay Hình tròn Logo.png" alt="img" width="80px" , height="80px">
+            </div>
+
+
+        </div>
+        <div id="left">
+            <h1>Chuyen thu mua</h1>
+            <p>Sau rieng: Thai, musaking, Ri6</p>
+            <form action="">
+                <label for="ten">Tên</label>
+                <input type="text" name="ten"><br>
+
+                <label for="sl">Nhâp số lượng</label>
+                <input type="text" name="sl"><br>
+
+                <label for="lh">Loai Hang</label>
+                <input type="text" name="lh"><br>
+                <div class="buttons">
+                    <input type="submit" value="Submit">
+                </div>
+
+            </form>
+        </div>
+        <div id="right">
+            <h2>Thông tin chi tiết
+
+            </h2>
+            <p>Nhập hàng theo tình trạng: Hàng A,B,C</p>
+            <p>Không nhập các loại nấm ,Chín trong, hàng non</p>
+            <img src="\img\sr.png" alt="img" width="300px" height="300px">
+        </div>
+        <div id="footer">
+            <p>Uy Tín Chất Lượng Đặt Lên Hàng Đầu</p>
+            <p>Địa chỉ: Thị trấn Phước An, Huyện Krong pắc, Tỉnh Đắk Lắk</p>
+            <p>SĐT: 098797979</p>
+
+        </div>
+    </div>
+</body>
+
+</html>
